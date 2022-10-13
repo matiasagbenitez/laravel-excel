@@ -58,4 +58,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    // Has many invoices
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
