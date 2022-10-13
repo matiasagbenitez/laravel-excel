@@ -14,8 +14,9 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithDrawings;
 
-class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths
+class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths, WithDrawings
 {
     use Exportable;
 
@@ -83,5 +84,17 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
             'F' => 30,
             'G' => 15,
         ];
+    }
+
+    public function drawings()
+    {
+        $drawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
+        $drawing->setName('Logo');
+        $drawing->setDescription('Logo');
+        $drawing->setPath(public_path('img/logo.jpg'));
+        $drawing->setHeight(90);
+        $drawing->setCoordinates('B2');
+
+        return $drawing;
     }
 }
