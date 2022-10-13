@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <x-jet-button class="mt-2">Generar reporte</x-jet-button>
+            <x-jet-button wire:click="generateReport" class="mt-2">Generar reporte</x-jet-button>
 
         </div>
 
