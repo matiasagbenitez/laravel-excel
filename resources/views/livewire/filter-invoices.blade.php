@@ -1,5 +1,5 @@
 <div>
-    @dump($filters)
+    {{-- @dump($filters) --}}
     {{-- FILTROS --}}
     <div class="bg-white rounded p-4 shadow-sm mb-2">
         <h2 class="text-lg font-semibold mb-1">Generar reportes</h2>

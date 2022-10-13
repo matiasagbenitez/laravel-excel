@@ -20,7 +20,7 @@ class FilterInvoices extends Component
 
     public function render()
     {
-        $invoices = Invoice::paginate(10);
+        $invoices = Invoice::filter($this->filters)->paginate(10);
 
         return view('livewire.filter-invoices', compact('invoices'));
     }
