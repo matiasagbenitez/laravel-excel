@@ -15,8 +15,10 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithDrawings;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths, WithDrawings
+class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths, WithDrawings, WithStyles
 {
     use Exportable;
 
@@ -96,5 +98,12 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
         $drawing->setCoordinates('B2');
 
         return $drawing;
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        $sheet->setTitle('Facturas');
+        $sheet->mergeCells('B2:G2');
+        $sheet->setCellValue('A1', 'Facturas');
     }
 }
