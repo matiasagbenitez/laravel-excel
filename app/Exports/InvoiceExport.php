@@ -126,8 +126,15 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
                     'argb' => 'FFA0A0A0',
                 ],
             ],
+        ]);
 
-
+        $sheet->getStyle('A10:G' . $sheet->getHighestRow())->getBorders()->applyFromArray([
+            'allBorders' => [
+                'borderStyle' => 'thin',
+                'color' => [
+                    'argb' => 'FF000000',
+                ],
+            ],
         ]);
     }
 }
