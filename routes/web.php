@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/invoices/export', [InvoiceController::class, 'export'])->name('invoices.export');
+Route::get('/invoices/import', [InvoiceController::class, 'import'])->name('invoices.import');
