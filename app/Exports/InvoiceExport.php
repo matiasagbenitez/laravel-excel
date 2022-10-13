@@ -11,8 +11,9 @@ use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting
+class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings
 {
     use Exportable;
 
@@ -34,6 +35,19 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
     public function startCell(): string
     {
         return 'A10';
+    }
+
+    public function headings(): array
+    {
+        return [
+            'Serie',
+            'Correlativo',
+            'Base',
+            'IVA',
+            'Total',
+            'Usuario',
+            'Fecha',
+        ];
     }
 
     public function map($invoice): array
