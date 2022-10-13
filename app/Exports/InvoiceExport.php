@@ -3,20 +3,20 @@
 namespace App\Exports;
 
 use App\Models\Invoice;
-use Illuminate\Contracts\Support\Responsable;
 use Maatwebsite\Excel\Excel;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithCustomStartCell;
-use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithDrawings;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\Support\Responsable;
+use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
-use Maatwebsite\Excel\Concerns\WithDrawings;
-use Maatwebsite\Excel\Concerns\WithStyles;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Maatwebsite\Excel\Concerns\WithCustomStartCell;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 
 class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths, WithDrawings, WithStyles
 {
@@ -103,7 +103,31 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
     public function styles(Worksheet $sheet)
     {
         $sheet->setTitle('Facturas');
-        $sheet->mergeCells('B2:G2');
-        $sheet->setCellValue('A1', 'Facturas');
+        // $sheet->mergeCells('B2:G2');
+        // $sheet->setCellValue('A1', 'Facturas');
+
+        $sheet->getStyle('A10:G10')->applyFromArray([
+            'font' => [
+                'bold' => true,
+                'size' => 12,
+                // Arial
+                'name' => 'Arial',
+            ],
+
+            // Alignment
+            'alignment' => [
+                'horizontal' => 'center',
+            ],
+
+            // Background color
+            'fill' => [
+                'fillType' => 'solid',
+                'startColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+            ],
+
+
+        ]);
     }
 }
