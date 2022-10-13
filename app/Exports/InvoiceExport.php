@@ -12,8 +12,10 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
 
-class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings
+class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable, WithMapping, WithColumnFormatting, WithHeadings, WithColumnWidths
 {
     use Exportable;
 
@@ -67,6 +69,19 @@ class InvoiceExport implements FromCollection, WithCustomStartCell, Responsable,
     {
         return [
             'G' => 'dd/mm/yyyy',
+        ];
+    }
+
+    public function columnWidths(): array
+    {
+        return [
+            'A' => 10,
+            'B' => 10,
+            'C' => 10,
+            'D' => 10,
+            'E' => 10,
+            'F' => 30,
+            'G' => 15,
         ];
     }
 }
